@@ -1,3 +1,4 @@
+##
 
 bits = 1024
 p	= random_prime(2**bits);	print "      p = %d" %p
