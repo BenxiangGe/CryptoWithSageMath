@@ -1,13 +1,12 @@
-#!/usr/bin/env sage -python
-load('cryptosage/prime192v1.sage')
-load('cryptosage/digest.sage')
-load('cryptosage/mathhelper.sage')
-load('cryptosage/eckeygen.sage')
-load('cryptosage/ecdsa.sage')
+# test ec_keygen and ecdsa
+
+load("prime192v1.sage")
+load("digest.sage")
+load("eckeygen.sage")
+load("ecdsa.sage")
 
 (Q, d) = ec_keygen()
-#pk: Q, sk:d
-m = 'hello'
+m = 'signed message'
 
 [r, s] = ecdsa_sign(d, m)
 result = ecdsa_verify(Q, m, r, s)
@@ -15,5 +14,7 @@ result = ecdsa_verify(Q, m, r, s)
 print "EC Public Key       : ", Q.xy()
 print "EC Private Key      : ", d
 print "Signed Message      : ", m
-print "ECDSA Signature     : ", r
+print "ECDSA Signature     : "
+print " r = ", r
+print " s = ", s
 print "Verification Result : ", result

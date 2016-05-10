@@ -1,6 +1,4 @@
-
 # g is the generator of GF(p)
-# how to select a g ?
 
 def elgamal_keygen(bits):
 	p = random_prime(2^bits)
@@ -25,10 +23,20 @@ def elgamal_decrypt(c, sk):
 
 sk = elgamal_keygen(1024)
 pk = sk[0]
+print "sk:"
+print sk
+print "pk:"
+print pk
+
 m = 123
+print "m = %d" %m
 
 c = elgamal_encrypt(m, pk)
+
+print "c:"
 print c
 
-print elgamal_decrypt(c, sk)
+m2 = elgamal_decrypt(c, sk)
+print "m' = %d" %m2
+
 

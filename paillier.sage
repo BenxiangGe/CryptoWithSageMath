@@ -41,7 +41,10 @@ def paillier_decrypt(c, sk):
 	c = Zn((Integer(c^lmd) - 1) / n) * mu
 	return c
 
-# FIXME
 def paillier_ciphertext_add(c1, c2, pk):
-	return c1 * c2
+	(n, g) = pk
+	Zn2 = IntegerModRing(n^2)
+	r = Zn2(randint(0, n))
+	return c1 * c2 * r^n
+
 
