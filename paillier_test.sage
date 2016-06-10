@@ -21,3 +21,8 @@ sum = paillier_ciphertext_add(c1, c2, pk)
 print "m1 + m2 = ", m1 + m2
 print "m1 + m2 = ", paillier_decrypt(sum, sk)
 
+ret = paillier_ciphertext_linear(2, c1, 3, c2, pk)
+print "2 * m1 + 3 * m2 = ", 2*m1 + 3*m2
+print "2 * m1 + 3 * m2 = ", paillier_decrypt(ret, sk)
+
+

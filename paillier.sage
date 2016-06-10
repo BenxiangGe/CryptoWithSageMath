@@ -47,4 +47,13 @@ def paillier_ciphertext_add(c1, c2, pk):
 	r = Zn2(randint(0, n))
 	return c1 * c2 * r^n
 
+def paillier_ciphertext_scalar_mul(a, c, pk):
+	return c^a;
+
+def paillier_ciphertext_linear(a, c1, b, c2, pk):
+	(n, g) = pk
+	Zn2 = IntegerModRing(n^2)
+	r = Zn2(randint(0, n))
+	return (c1^a) * (c2^b) * r^n
+
 
