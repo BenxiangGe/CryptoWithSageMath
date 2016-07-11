@@ -40,7 +40,7 @@ def point_add(P, Q):
 	# check P == O
 	if P == [0, 0]:
 		return Q
-	
+
 	# check Q == O
 	if Q == [0, 0]:
 		return P
