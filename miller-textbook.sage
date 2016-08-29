@@ -1,28 +1,53 @@
+# Bilinear Pairing
 
-
+# supersingular curve
+# E: y^2 = x^3 + 1 (mod p)
+# p = 11 (mod 12)
+# normally choose p as a solinas prime
 p = 2**192 - 2**64 - 1
+print "p = 2^192 - 2^64 - 1 = ", p
+print "p mod 12 = ", p % 12
+
 Fp = FiniteField(p)
 a = 0
 b = 1
+
+EFp = EllipticCurve(Fp, [a, b])
+print "E", EFp
+print "#E", EFp.order()
+print "p + 1 = ", p+1
+
+# generate random point A on E(Fp)
+k = -(p-2)/3
+yA = Fp(randint(0, p-1))
+xA = (yA^2 - 1)^k
+A = EFp((3490623488107933015424560092111020851745800620910508679457, 3152942073915555186624051209510405406193824922764565481462))
+#print A
+
+
 Fp2.<x> = FiniteField(p^2)
+
+
+
 EFp2 = EllipticCurve(Fp2, [a, b])
+#print EFp2.order()
+#print (p+1)^2
 
-# we need to random a point on E(F_p^2)
-def random_point():
-	yP = os.random()
+B = EFp2((3490623488107933015424560092111020851745800620910508679457, 3152942073915555186624051209510405406193824922764565481462))
+#print B
 
-var('X Y')
 
+var('x y')
 def g(P, Q):
-	(xP, yP) = P.xy()
-	(xQ, yQ) = Q.xy()
-	if xP == xQ and yQ != yQ:
-		return X - xP
+	(x_P, y_P) = P.xy()
+	(x_Q, y_Q) = Q.xy()
+	if x_P == x_Q and y_P + y_Q == 0:
+		return x - x_P
 	if P == Q:
-		slope = (3 * xP^2 + a)/(2 * yP)
+		slope = (3 * x_P^2 + a)/(2 * y_P)
 	else:
-		slope = (yP - yQ)/(xP - xQ)
-	return (Y - yP - slope * (X - xP))/(X + xP + xQ - slope^2)
+		slope = (y_P - y_Q)/(x_P - x_Q)
+	return (y - yP - slope * (x - xP))/(x + xP + xQ - slope^2)
 
 def miller(m, P):
 	m = bin(m)[2:]
@@ -37,4 +62,5 @@ def miller(m, P):
 			T = T + P
 	return f
 
-def 
+print g(A, A)
+

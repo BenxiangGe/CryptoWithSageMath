@@ -25,6 +25,9 @@ def lamport_sign(m, sk):
 		sig.append(sk[i][int(m[i])])
 	return sig
 
+def lamport_verify(m, sig, pk):
+	return 0
+
 (sk,pk) = lamport_keygen(160, 6)
 print (sk, pk)
 

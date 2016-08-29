@@ -11,6 +11,10 @@ print F2
 F4.<a> = GF(256)
 print F4
 
+# The following two definitions of binary field is the same
+# F.<x> = GF(2^8)
+# F = GF(2^8, 'x)
+
 print ""
 
 F.<x> = GF(128)
