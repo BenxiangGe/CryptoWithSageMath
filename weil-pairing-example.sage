@@ -43,25 +43,27 @@ def miller(m, P):
 			T = T + P
 	return f
 
+def eval_miller(P, Q):
+	f = miller(n, P)
+	(x1, y1) = Q.xy()
+	return f(x = x1, y = y1)
 
-f_P = miller(n, P)
-(x1, y1) = (Q + S).xy()
-(x2, y2) = S.xy()
-num = f_P(x = x1, y = y1)
-den = f_P(x = x2, y = y2)
-u = num/den
+def weil_pairing(P, Q, S):
+	num = eval_miller(P, Q+S)/eval_miller(P,  S)
+	den = eval_miller(Q, P-S)/eval_miller(Q, -S)
+	return (num/den)
 
-f_Q = miller(n, Q)
-(x3, y3) = (P - S).xy()
-(x4, y4) = (-S).xy()
-num = f_Q(x = x3, y = y3)
-den = f_Q(x = x4, y = y4)
-v = num/den
-
-e = u/v
-
+e = weil_pairing(P, Q, S)
 print "e(P, Q) =", e
 
 # e^n = 1
 print "e(P, Q)^n =", e^n
 
+P3 = P * 3
+Q4 = Q * 4
+e12 = weil_pairing(P3, Q4, S)
+
+print "[3]P =", P3.xy()
+print "[4]Q =", Q4.xy()
+print "e([3]P, [4]Q) =", e12
+print "e(P, Q)^12 =", e^12
