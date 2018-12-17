@@ -67,3 +67,5 @@ print "[3]P =", P3.xy()
 print "[4]Q =", Q4.xy()
 print "e([3]P, [4]Q) =", e12
 print "e(P, Q)^12 =", e^12
+P.weil_pairing(Q, 5)^12
+
